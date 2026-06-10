@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Carnegie Mellon University</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #800000 0%, #A6192E 50%, #6B0000 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated background pattern */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: 
+                radial-gradient(circle at 20% 50%, #fff 1px, transparent 1px),
+                radial-gradient(circle at 80% 20%, #fff 1px, transparent 1px),
+                radial-gradient(circle at 40% 80%, #fff 1px, transparent 1px),
+                radial-gradient(circle at 60% 40%, #fff 1px, transparent 1px),
+                radial-gradient(circle at 90% 70%, #fff 1px, transparent 1px);
+            background-size: 100px 100px;
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { background-position: 0 0, 0 0, 0 0, 0 0, 0 0; }
+            100% { background-position: 100px 100px, -100px 50px, 50px -50px, -50px -100px, 100px -100px; }
+        }
+
+        .error-container {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cmu-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 30px;
+        }
+
+        .error-code {
+            font-size: 120px;
+            font-weight: 900;
+            color: #800000;
+            line-height: 1;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .error-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: #800000;
+        }
+
+        .search-btn {
+            padding: 12px 25px;
+            background: #800000;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+            font-weight: 600;
+        }
+
+        .search-btn:hover {
+            background: #A6192E;
+            transform: translateY(-1px);
+        }
+
+        .search-btn:active {
+            transform: translateY(0);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #800000;
+            color: white;
+            border: 2px solid #800000;
+        }
+
+        .btn-primary:hover {
+            background: #6B0000;
+            border-color: #6B0000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(128, 0, 0, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #800000;
+            border: 2px solid #800000;
+        }
+
+        .btn-outline:hover {
+            background: #800000;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(128, 0, 0, 0.3);
+        }
+
+        .quick-links {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+
+        .quick-links h4 {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+        }
+
+        .quick-link {
+            color: #800000;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .quick-link:hover {
+            background: rgba(128, 0, 0, 0.1);
+        }
+
+        @media (max-width: 480px) {
+            .error-container {
+                padding: 40px 20px;
+            }
+            
+            .error-code {
+                font-size: 80px;
+            }
+            
+            .error-title {
+                font-size: 24px;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    
+    <div class="error-container">
+        <!-- CMU Logo -->
+        <svg class="cmu-logo" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="10" width="40" height="40" fill="#800000" rx="5"/>
+            <text x="30" y="38" font-family="Arial" font-size="24" font-weight="bold" fill="white" text-anchor="middle">CMU</text>
+            <text x="60" y="40" font-family="Arial" font-size="20" font-weight="bold" fill="#800000">Carnegie Mellon</text>
+            <text x="60" y="55" font-family="Arial" font-size="12" fill="#666">University</text>
+        </svg>
+
+        <!-- 404 Error Display -->
+        <div class="error-code">404</div>
+        <h1 class="error-title">Page Not Found</h1>
+        <p class="error-message">
+            Oops! The page you're looking for doesn't exist or has been moved. 
+            It might have been removed, renamed, or is temporarily unavailable.
+        </p>
+
+        <!-- Search Box -->
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search cmu.edu..." id="searchInput">
+            <button class="search-btn" onclick="performSearch()">🔍 Search</button>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="button-group">
+            <a href="https://www.cmu.edu" class="btn btn-primary">🏠 Back to Homepage</a>
+            <a href="https://www.cmu.edu/sitemap" class="btn btn-outline">📑 Site Map</a>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="quick-links">
+            <h4>Quick Links</h4>
+            <div class="links-grid">
+                <a href="https://www.cmu.edu/admission" class="quick-link">Admissions</a>
+                <a href="https://www.cmu.edu/academics" class="quick-link">Academics</a>
+                <a href="https://www.cmu.edu/research" class="quick-link">Research</a>
+                <a href="https://www.cmu.edu/campus-life" class="quick-link">Campus Life</a>
+                <a href="https://www.cmu.edu/directory" class="quick-link">Directory</a>
+                <a href="https://www.cmu.edu/contact" class="quick-link">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Get current URL information
+        const currentUrl = window.location.href;
+        const path = window.location.pathname;
+        
+        // Display attempted URL in console for debugging
+        console.log(`404 Error: Page not found - ${currentUrl}`);
+        console.log(`Attempted path: ${path}`);
+
+        // Function to perform search
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchTerm = searchInput.value.trim();
+            
+            if (searchTerm) {
+                // Redirect to CMU search with the query
+                const searchUrl = `https://www.cmu.edu/search/index.html?q=${encodeURIComponent(searchTerm)}`;
+                window.location.href = searchUrl;
+            } else {
+                showToast('Please enter a search term');
+                searchInput.focus();
+            }
+        }
+
+        // Allow search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Toast notification function
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Auto-focus search input
+        document.getElementById('searchInput').focus();
+
+        // Track 404 error (simulated analytics)
+        function track404Error() {
+            const errorData = {
+                url: currentUrl,
+                path: path,
+                timestamp: new Date().toISOString(),
+                referrer: document.referrer || 'direct',
+                userAgent: navigator.userAgent
+            };
+            
+            // In real implementation, this would send data to analytics
+            console.log('404 Error Tracked:', errorData);
+            
+            // You could uncomment this to send to an analytics endpoint:
+            // fetch('https://analytics.cmu.edu/track-404', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(errorData)
+            // });
+        }
+
+        // Suggest similar pages based on URL path
+        function suggestPages() {
+            const pathParts = path.toLowerCase().split('/').filter(part => part.length > 0);
+            
+            if (pathParts.length > 0) {
+                const suggestions = document.createElement('div');
+                suggestions.style.cssText = `
+                    margin-top: 20px;
+                    padding: 15px;
+                    background: #f8f9fa;
+                    border-radius: 10px;
+                    text-align: left;
+                `;
+                
+                suggestions.innerHTML = `
+                    <p style="color: #666; font-size: 14px; margin-bottom: 10px;">
+                        <strong>💡 Did you mean?</strong>
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <a href="https://www.cmu.edu/search?q=${encodeURIComponent(pathParts.join(' '))}" 
+                           style="color: #800000; text-decoration: none; font-size: 14px;">
+                            🔍 Search for "${pathParts.join(' ')}"
+                        </a>
+                        <a href="https://www.cmu.edu/sitemap" 
+                           style="color: #800000; text-decoration: none; font-size: 14px;">
+                            📑 Browse Site Map
+                        </a>
+                    </div>
+                `;
+                
+                // Insert after error message if path has content
+                const errorMessage = document.querySelector('.error-message');
+                if (errorMessage && pathParts.length > 1) {
+                    errorMessage.after(suggestions);
+                }
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            track404Error();
+            suggestPages();
+            
+            // Update page title with subdomain info
+            document.title = '404 - Page Not Found | cmu.edu';
+        });
+
+        // Handle back button
+        window.addEventListener('popstate', function() {
+            track404Error();
+        });
+
+        // Prevent form submission if someone adds a form
+        document.addEventListener('submit', function(e) {
+            e.preventDefault();
+            performSearch();
+        });
+    </script>
+</body>
+</html>
